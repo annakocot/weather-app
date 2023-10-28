@@ -1,4 +1,4 @@
-export const weatherCodes = [
+export const WEATHER_CODES = [
 { code: 0, description: 'Clear sky' },
 { code: 1, description: 'Mainly clear' }, 
 { code: 2, description: 'Partly cloudy' },
