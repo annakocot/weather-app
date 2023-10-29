@@ -13,21 +13,13 @@ export const getWeekForecastWeather = (response, descriptions_list) => {
     return dayAvgsList;
   };
 
-  export const getTodayForecastWeather = (
+  export const getTodayForecast = (
     response,
   ) => {
-    let all_today_forecasts = [];
-    console.log(response, 'res')
-  
+
     if (!response || Object.keys(response).length === 0)
       return [];
     else {
-
-      Object.entries(response.current).forEach((key, i) => {
-        all_today_forecasts.push([key, i])
-      });
-
-      console.log(all_today_forecasts)
-        return all_today_forecasts;
+        return response.current;
       };
   };
