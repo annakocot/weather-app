@@ -12,25 +12,35 @@ const Date = styled.div`
   width: 100px;
   height: 200px;
   background-color: #c5cbd4;
-  display: block;
+  display: flex;
   flex-direction: column;
   margin: 5px;
   border-radius: 5px;
 `
 
-const WeeklyForecast = ({weeklyWeather}) => {
-  return(
-    <>
-    <Week>
-    {weeklyWeather.time ? weeklyWeather.time.map((day) => {
-        <Date>
+const WeeklyForecast = ({ weekForecast }) => {
 
-          <p>{day}</p>
-          
-        </Date>})
-  : null}
+
+  return(
+    <div>
+    
+    <Week>
+      aefgiaf
+
+    {weekForecast?.length > 0 ?
+      weekForecast.map((day) => 
+
+      <Date>{day.time}
+      {day.temperature_2m_max}
+      {day.temperature_2m_min}
+      {day.weathercode}
+      </Date>
+       
+      )
+      : null}
     </Week>
-    </>
+  
+    </div>
   )
 }
 

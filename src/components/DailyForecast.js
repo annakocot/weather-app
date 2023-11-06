@@ -12,18 +12,17 @@ font-size: 18px;`
 
 const DailyForecast = ({todaysWeather}) => {
 
-  const weatherData = todaysWeather ? todaysWeather[1] : null;
-
   return (
     <>
     {todaysWeather ?
       <>
-      <CityName>{todaysWeather[0].city}</CityName>
-        <Temperature>Temperature: {weatherData.temperature_2m}°C</Temperature>
-        <p>Apparent temperature: {weatherData.apparent_temperature}°C </p>
+      {console.log(todaysWeather)}
+      <CityName>{todaysWeather.city}</CityName>
+        <Temperature>Temperature: {todaysWeather.temperature_2m}°C</Temperature>
+        <p>Apparent temperature: {todaysWeather.apparent_temperature}°C </p>
 
-        Wind: {weatherData.windspeed_10m} km/h
-        <Description>{typeof weatherData.weathercode !== 'undefined' ? `${WEATHER_CODES.find(({code}) => code === weatherData.weathercode).description}` : ''}</Description>
+        Wind: {todaysWeather.windspeed_10m} km/h
+        <Description>{typeof todaysWeather.weathercode !== 'undefined' ? `${WEATHER_CODES.find(({code}) => code === todaysWeather.weathercode).description}` : ''}</Description>
       </>
     : null }
   </> 

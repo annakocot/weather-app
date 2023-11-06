@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchCities } from "../../api/WeatherService";
+import { fetchCities } from "../api/WeatherService";
 import AsyncSelect from 'react-select/async';
 
 const SearchBar = ({onInputChange}) => {

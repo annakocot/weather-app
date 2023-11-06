@@ -1,24 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components'; 
-import WeeklyForecast from './weekly-forecast/WeeklyForecast';
-import { WEATHER_CODES } from '../../consts/weatherCodes';
-import { WiStrongWind } from 'react-icons/wi';
+import WeeklyForecast from './WeeklyForecast';
 import SearchBar from './SearchBar';
-import { transformDateFormat } from '../../helpers/DateHelper';
-import { fetchWeatherData } from '../../api/WeatherService';
-import { getTodayForecast } from '../../helpers/WeatherHelper';
-import DailyForecast from '../DailyForecast';
+import { transformDateFormat } from '../helpers/DateHelper';
+import { fetchWeatherData } from '../api/WeatherService';
+import { getTodayForecast, getWeekForecast } from '../helpers/WeatherHelper';
+import DailyForecast from './DailyForecast';
 
 const Container = styled.div`
- font-family: ${props => props.theme.fonts[0]};
-width: 100%;
-margin: 0 auto;`
+  font-family: ${props => props.theme.fonts[0]};
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background: linear-gradient(to bottom, ${props => props.theme.light.backgroundDark}, ${props => props.theme.light.backgroundLight})
+`
 
 const Main = () => {
-  const [query, setQuery] = useState('');
-  const [currentWeather, setCurrentWeather] = useState({});
-  const [nextDaysWeather, setNextDaysWeather] = useState({});
-
   const [todayWeather, setTodayWeather] = useState(null);
   const [todayForecast, setTodayForecast] = useState(null);
   const [weekForecast, setWeekForecast] = useState(null);
@@ -34,12 +31,15 @@ const Main = () => {
     let dt_now = Math.floor(date.getTime() / 1000);
 
     try {
-      const todayWeatherResponse =
+      const weatherResponse =
         await fetchWeatherData(enteredData);
-      const todayForecastValues = getTodayForecast(todayWeatherResponse);
+      const todayForecastValues = getTodayForecast(weatherResponse);
+      const weekWeatherValues = getWeekForecast(weatherResponse);
 
       setTodayForecast(todayForecastValues);
-      setTodayWeather([{ city: enteredData.label }, todayForecastValues]);
+      setTodayWeather({ city: enteredData.label , ...todayForecastValues});
+      console.log(todayForecast)
+      setWeekForecast(weekWeatherValues);
     } catch (error) {
       setError(true);
       console.error(error)
@@ -48,11 +48,6 @@ const Main = () => {
     setIsLoading(false);
   };
 
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = query; 
-  },[query]); 
-  
   return (
     <Container>
       <SearchBar
@@ -62,10 +57,11 @@ const Main = () => {
     todaysWeather={todayWeather}
    />
     <WeeklyForecast
-    weeklyWeather={nextDaysWeather}
+    weekForecast={weekForecast}
     ></WeeklyForecast>
     </Container>
   )
 }
 
 export default Main;
+ 

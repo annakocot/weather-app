@@ -1,14 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import Main from './components/main/Main';
 import Theme from './Theme';
+import Main from './components/Main';
 
 function App() {
   return (
     <Theme>
-    <div className="App">
-     <Main></Main>
-    </div>
+     <Main/>
     </Theme>
   );
 }

@@ -1,25 +1,44 @@
-export const getWeekForecastWeather = (response, descriptions_list) => {
-  let foreacast_data = [];
-  let descriptions_data = [];
-  let dayAvgsList = response
-
-
-  if (!response || Object.keys(response).length === 0)
+export const getWeekForecast = (response) => {
+  if (!response || Object.keys(response).length === 0) {
     return [];
-  else {
-    // TODO: resolve weather api response, weathercodes
   }
 
-    return dayAvgsList;
-  };
+  const data = response.daily;
+  const length = data.time.length;
+  const result = [];
 
-  export const getTodayForecast = (
-    response,
-  ) => {
+  for (let i = 0; i < length; i++) {
+    result.push(convertToSingleDay(data, i));
+  }
 
-    if (!response || Object.keys(response).length === 0)
+  return result;
+};
+
+  export const getTodayForecast = (response) => {
+    if (!response || Object.keys(response).length === 0) {
       return [];
-    else {
-        return response.current;
-      };
+     }
+    return response.current;
   };
+
+  export const convertToSingleDay = (data, index) => {
+    return {
+      time: data.time[index],
+      weathercode: data.weathercode[index],
+      temperature_2m_max: data.temperature_2m_max[index],
+      temperature_2m_min: data.temperature_2m_min[index],
+      apparent_temperature_max: data.apparent_temperature_max[index],
+      apparent_temperature_min: data.apparent_temperature_min[index],
+      sunrise: data.sunrise[index],
+      sunset: data.sunset[index],
+      uv_index_max: data.uv_index_max[index],
+      precipitation_sum: data.precipitation_sum[index],
+      rain_sum: data.rain_sum[index],
+      showers_sum: data.showers_sum[index],
+      snowfall_sum: data.snowfall_sum[index],
+      precipitation_hours: data.precipitation_hours[index],
+      precipitation_probability_max: data.precipitation_probability_max[index],
+      windspeed_10m_max: data.windspeed_10m_max[index],
+      winddirection_10m_dominant: data.winddirection_10m_dominant[index]
+    }
+  }
