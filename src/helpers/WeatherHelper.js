@@ -1,3 +1,5 @@
+import { WEATHER_CODES } from '../consts/weatherCodes';
+
 export const getWeekForecast = (response) => {
   if (!response || Object.keys(response).length === 0) {
     return [];
@@ -42,3 +44,14 @@ export const getWeekForecast = (response) => {
       winddirection_10m_dominant: data.winddirection_10m_dominant[index]
     }
   }
+
+export const resolveWeatherCode = (input) => {
+  const weatherCode = WEATHER_CODES.find(({code}) => code === input.weathercode);
+  return weatherCode.description;
+}
+
+// TODO:
+export const resolveWeatherIcon = (input) => {
+  const weatherCode = WEATHER_CODES.find(({code}) => code === input.weathercode);
+  return weatherCode.icon;
+}

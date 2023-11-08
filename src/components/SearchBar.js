@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { fetchCities } from "../api/WeatherService";
 import AsyncSelect from 'react-select/async';
+import styled from "styled-components";
+
+const SearchContainer = styled.div`
+  width: 500px;
+  margin: 3rem auto;
+  `;
+const SearchInput = styled(AsyncSelect)`
+  color: ${({theme}) => theme.primary};
+  font-size: 1.8rem;
+`
 
 const SearchBar = ({onInputChange}) => {
   const [searchValue, setSearchValue] = useState(null);
@@ -22,12 +32,15 @@ const SearchBar = ({onInputChange}) => {
   }
 
   return (
-    <AsyncSelect
-    placeholder="Find your city"
-    debounceTimeout={600}
-    value={searchValue}
-    onChange={valueChangeHandler}
-    loadOptions={loadOptions} />
+    <SearchContainer>
+      <SearchInput 
+      placeholder="Find your city"
+      debounceTimeout={600}
+      value={searchValue}
+      onChange={valueChangeHandler}
+      loadOptions={loadOptions}
+  />
+    </SearchContainer>
   );
 }
 

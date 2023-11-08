@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {resolveWeatherCode} from '../helpers/WeatherHelper';
 
 const Week = styled.div`
   width: 100%;
@@ -8,39 +9,33 @@ const Week = styled.div`
   justify-content: center;
   `
 
-const Date = styled.div`
-  width: 100px;
-  height: 200px;
-  background-color: #c5cbd4;
+const Weekday = styled.div`
+  width: 15rem;
+  height: 20rem;
+  background-color: ${({theme}) => theme.secondaryContainer};
   display: flex;
   flex-direction: column;
-  margin: 5px;
-  border-radius: 5px;
+  margin: 1rem;
+  border-radius: .8rem;
+  padding: 2rem;
+  font-size: 1.6rem;
 `
 
 const WeeklyForecast = ({ weekForecast }) => {
 
 
-  return(
-    <div>
-    
+  return( 
     <Week>
-      aefgiaf
-
     {weekForecast?.length > 0 ?
       weekForecast.map((day) => 
-
-      <Date>{day.time}
+      <Weekday>{day.time}
       {day.temperature_2m_max}
       {day.temperature_2m_min}
-      {day.weathercode}
-      </Date>
-       
+      <p>{resolveWeatherCode(day)}</p>
+      </Weekday> 
       )
       : null}
     </Week>
-  
-    </div>
   )
 }
 

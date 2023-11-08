@@ -1,8 +1,4 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-
-const theme = {
-  light: {
+ export const lightTheme = {
     primary: '#006876',
     onPrimary: '#ffffff',
     primaryContainer: '#a1efff',
@@ -26,8 +22,9 @@ const theme = {
     onError: '#ffffff',
     errorContainer: '#ffdad6',
     onErrorContainer: '#410002',
-  },
-  dark: {
+  };
+
+  export const darkTheme = {
     primary: '#51d7ef',
     onPrimary: '#00363e',
     primaryContainer: '#004e59',
@@ -51,17 +48,4 @@ const theme = {
     onError: '#690005',
     errorContainer: '#93000a',
     onErrorContainer: '#ffdad6',
-  },
-  fonts: [ 'sans-serif', 'Montserrat'],
-  fontSizes: {
-    small: '1.2rem',
-    medium: '2.4rem',
-    large: '3.6rem'
-  }
-}
-
-const Theme = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
-
-export default Theme;
+  };

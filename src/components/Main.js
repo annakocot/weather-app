@@ -5,14 +5,13 @@ import SearchBar from './SearchBar';
 import { transformDateFormat } from '../helpers/DateHelper';
 import { fetchWeatherData } from '../api/WeatherService';
 import { getTodayForecast, getWeekForecast } from '../helpers/WeatherHelper';
-import DailyForecast from './DailyForecast';
+import TodaysForecast from './TodaysForecast';
 
 const Container = styled.div`
-  font-family: ${props => props.theme.fonts[0]};
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  background: linear-gradient(to bottom, ${props => props.theme.light.backgroundDark}, ${props => props.theme.light.backgroundLight})
+
 `
 
 const Main = () => {
@@ -53,12 +52,12 @@ const Main = () => {
       <SearchBar
       onInputChange={searchChangeHandler}
       />
-   <DailyForecast 
-    todaysWeather={todayWeather}
-   />
-    <WeeklyForecast
-    weekForecast={weekForecast}
-    ></WeeklyForecast>
+      <TodaysForecast 
+        todaysWeather={todayWeather}
+      />
+      <WeeklyForecast
+      weekForecast={weekForecast}
+      ></WeeklyForecast>
     </Container>
   )
 }

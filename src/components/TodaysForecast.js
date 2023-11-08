@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { WEATHER_CODES } from '../consts/weatherCodes';
 import styled from 'styled-components'; 
+import {resolveWeatherCode} from '../helpers/WeatherHelper';
 
 const CityName = styled.h1`
 font-size: 18px;`
@@ -8,25 +8,34 @@ const Temperature = styled.h2`
 font-size: 34px;`
 const Description = styled.p`
 font-size: 18px;`
+const TodayForecastContainer = styled.div`
+  width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 
-const DailyForecast = ({todaysWeather}) => {
+const TodaysForecast = ({todaysWeather}) => {
+
+  const weatherDesc = todaysWeather ? resolveWeatherCode(todaysWeather) : '';
 
   return (
-    <>
+    <TodayForecastContainer>
     {todaysWeather ?
       <>
-      {console.log(todaysWeather)}
       <CityName>{todaysWeather.city}</CityName>
         <Temperature>Temperature: {todaysWeather.temperature_2m}°C</Temperature>
+        <Description>
         <p>Apparent temperature: {todaysWeather.apparent_temperature}°C </p>
 
         Wind: {todaysWeather.windspeed_10m} km/h
-        <Description>{typeof todaysWeather.weathercode !== 'undefined' ? `${WEATHER_CODES.find(({code}) => code === todaysWeather.weathercode).description}` : ''}</Description>
+       { weatherDesc}</Description>
       </>
-    : null }
-  </> 
+      : null }
+    </TodayForecastContainer> 
   )
 }
 
-export default DailyForecast;
+export default TodaysForecast;
