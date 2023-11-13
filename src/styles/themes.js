@@ -37,7 +37,7 @@
     onTertiary: '#262f4d',
     tertiaryContainer: '#3c4665',
     onTertiaryContainer: '#dbe1ff',
-    background: '#191c1d',
+    background: '#2f3133',
     onBackground: '#e1e3e3',
     surface: '#191c1d',
     onSurface: '#e1e3e3',
