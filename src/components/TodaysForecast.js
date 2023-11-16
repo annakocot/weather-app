@@ -4,7 +4,7 @@ import { resolveWeatherCode, resolveWeatherIcon } from '../helpers/WeatherHelper
 
 const CityName = styled.h1`
 font-size: 3.2rem;`
-const Temperature = styled.h2`
+const Temperature = styled.div`
 font-size: 4.4rem;`
 const Description = styled.p`
 font-size: 18px;`
@@ -50,7 +50,7 @@ const TodaysForecast = ({todaysWeather}) => {
       <div>
       <CityName>{todaysWeather.city}</CityName>
       <p>{ weatherDesc }</p>
-      <TemperatureIcon /><Temperature>{todaysWeather.temperature_2m}°C</Temperature>
+      <Temperature><TemperatureIcon />{todaysWeather.temperature_2m}°C</Temperature>
       </div>
         <Description>
           <p>Feels like: {todaysWeather.apparent_temperature}°C </p>
