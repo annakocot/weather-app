@@ -27,6 +27,4 @@ export const WEATHER_CODES = [
 { code: 95, description: 'Thunderstorm', icon: 'BsFillCloudLightningRainFill'}, 
 { code: 96, description: 'Thunderstorm with slight hail', icon: 'BsFillCloudLightningRainFill' },
 { code: 99, description: 'Thunderstorm with heavy hail', icon: 'BsFillCloudLightningRainFill' },
-]
-
-// import { IconName } from "react-icons/bs";
+];

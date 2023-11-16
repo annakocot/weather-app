@@ -49,21 +49,3 @@ export const resolveWeatherCode = (input) => {
   const weatherCode = WEATHER_CODES.find(({code}) => code === input.weathercode);
   return weatherCode.description;
 }
-
-// TODO:
-export const resolveWeatherIcon = (input) => {
-  const weatherCode = WEATHER_CODES.find(({code}) => code === input.weathercode);
-  switch (weatherCode) {
-    case 0:
-    case 1:
-      return <div className="sun">sun</div>
-    case 3:
-      return <div className="cloud">cloud</div>
-    case 45:
-    case 48:
-      return <div className="fog">fog</div>
-    case 51:
-      return <div className="cloud">drizzle</div>
-
-  }
-}

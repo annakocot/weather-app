@@ -36,7 +36,6 @@ const Main = () => {
 
       setTodayForecast(todayForecastValues);
       setTodayWeather({ city: enteredData.label , ...todayForecastValues});
-      console.log(todayForecast)
       setWeekForecast(weekWeatherValues);
     } catch (error) {
       setError(true);

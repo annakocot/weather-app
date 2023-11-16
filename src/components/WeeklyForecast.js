@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {resolveWeatherCode} from '../helpers/WeatherHelper';
+import { WEATHER_ICONS } from '../consts/weatrherIcons';
 
 const Week = styled.div`
   width: 100%;
@@ -32,6 +33,9 @@ const WeeklyForecast = ({ weekForecast }) => {
       {day.temperature_2m_max}
       {day.temperature_2m_min}
       <p>{resolveWeatherCode(day)}</p>
+      <img src={resolveWeatherCode(day) in WEATHER_ICONS?
+                `${ process.env.PUBLIC_URL + WEATHER_ICONS[resolveWeatherCode(day)]}` : `${ process.env.PUBLIC_URL + '/icons/cloud.svg'}`}
+                />
       </Weekday> 
       )
       : null}
